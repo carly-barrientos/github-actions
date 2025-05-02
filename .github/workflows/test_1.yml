@@ -12,8 +12,18 @@ jobs:
       - name: Hola Mundo
         run: echo "Hola Mundo"
 
+      - name: Touch file
+        run: touch Hola.txt
+
+      - name: Set text
+        run: echo "Hola Mundo" >> Hola.txt
+
+      - name: Read file
+        run: cat Hola.txt
+
   other:
     runs-on: ubuntu-latest
+    
     steps:
       - name: LS
         run: ls -al
