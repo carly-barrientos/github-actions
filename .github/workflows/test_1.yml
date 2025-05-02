@@ -1,7 +1,13 @@
 name: Hola Mundo
 
 # eventos que disparan el workflow
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 # jobs: son los trabajos que se ejecutan dentro del workflow, cada job se ejecuta en un runner diferente
 jobs:
   hola:
