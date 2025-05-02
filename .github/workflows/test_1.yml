@@ -29,10 +29,12 @@ jobs:
 
   other:
     runs-on: ubuntu-latest
-
     needs: [hola]
-
-    steps:
+    steps: 
+      # actions: son acciones que se ejecutan dentro del job, pueden ser acciones de github o acciones personalizadas
+      - name: Checkout code
+        # si tiene actions por delante es una acción de github, si no tiene actions por delante es una acción personalizada
+        uses: actions/checkout@v4.1.7
       - name: LS
         run: ls -al
 
