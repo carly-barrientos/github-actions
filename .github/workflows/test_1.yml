@@ -65,3 +65,18 @@ jobs:
         with:
           message: "Carla"
   
+  services-example:
+    runs-on: ubuntu-latest
+    # Servicios que se ejecutan dentro del job, pueden ser bases de datos, servidores, etc. Se ejecutan en contenedores de docker
+    services:
+      mysql:
+        image: mysql:5.7
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+    
+    steps:
+      - name: Test
+        run: ls
+  
