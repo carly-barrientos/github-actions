@@ -1,0 +1,13 @@
+# Action customizada y reutilizable para el workflow de GitHub Actions
+name: "My action"
+description: "My action description"
+
+runs:
+  # Composite nos permite agrupar pasos comunes que podremos reutilizar en diferentes workflows
+  using: "composite"
+
+  steps:
+    - name: Hola mundo
+      run: echo "Hola Mundo"
+      # propiedad requerida
+      shell: bash
