@@ -79,4 +79,17 @@ jobs:
     steps:
       - name: Test
         run: ls
+
+  env-variables:
+    runs-on: ubuntu-latest
+    # Se pueden definir variables de entorno que se pueden usar en el job, en los steps o en las acciones
+    env:
+      MY_VAR: "Mi variable de entorno"
+    
+    steps:
+      - name: Test
+        env:
+          STEP_MY_VAR: Nivel step
+        # Podemos usar variables setteadas desde github usando ${{ vars.VARIABLE }}
+        run: echo "Valor $MY_VAR $STEP_MY_VAR  ${{ vars.MY_VARIABLE}}"
   
