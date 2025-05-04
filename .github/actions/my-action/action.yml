@@ -2,12 +2,19 @@
 name: "My action"
 description: "My action description"
 
+# Se pueden definir inputs para la acción, que son parámetros que se pueden pasar al ejecutar la acción
+inputs:
+  message:
+    description: "Mensaje a imprimir"
+    required: true
+    default: "Hola"
+
 runs:
   # Composite nos permite agrupar pasos comunes que podremos reutilizar en diferentes workflows
   using: "composite"
 
   steps:
     - name: Hola mundo
-      run: echo "Hola Mundo"
+      run: echo "Hola ${{ inputs.message }}"
       # propiedad requerida
       shell: bash
