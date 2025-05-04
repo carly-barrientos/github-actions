@@ -35,7 +35,21 @@ jobs:
       - name: Checkout code
         # si tiene actions por delante es una acción de github, si no tiene actions por delante es una acción personalizada
         uses: actions/checkout@v4.1.7
+
       - name: LS
         run: ls -al
 
+      - name: Script
+        run: |
+          chmod +x script.sh
+          ./script.sh
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.3
+        # nos permite pasar parametros a la acción
+        with:
+          node-version: latest
+
+      - name: node version
+        run: node -v
   
