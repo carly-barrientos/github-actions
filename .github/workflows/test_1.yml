@@ -97,16 +97,24 @@ jobs:
         # Se pueden usar secretos seteados desde github usando ${{ secrets.SECRET }}
         run: echo "Secret ${{ secrets.MY_SECRET }}"
 
-  conditionals:
+  conditionals-and-artifacts:
     runs-on: ubuntu-latest
     steps:
-      steps:
-      - name: Hola Mundo
+      - name: Checkout code
         id: test
-        run: echo "Hola Mundo"
+        uses: actions/checkout@v3
 
       - name: Conditional step
         # Se pueden usar condiciones para ejecutar pasos, jobs o workflows completos usando if, su valor puede ser success o failure
         if: ${{ steps.test.outputs.result == 'success' }}
         run: ls -al
+      
+      - name: Artifact
+        # Se pueden usar artefactos para guardar archivos entre jobs, se guardan en el job que se ejecuta y se pueden usar en otros jobs
+        uses: actions/upload-artifact@v4
+        # Tambien tenemos functiones que podemos usar en el if, como success(), failure(), always(), etc.
+        if: success()
+        with:
+          name: my-artifact
+          path: script.sh
   
