@@ -96,4 +96,17 @@ jobs:
       - name: Secret
         # Se pueden usar secretos seteados desde github usando ${{ secrets.SECRET }}
         run: echo "Secret ${{ secrets.MY_SECRET }}"
+
+  conditionals:
+    runs-on: ubuntu-latest
+    steps:
+      steps:
+      - name: Hola Mundo
+        id: test
+        run: echo "Hola Mundo"
+
+      - name: Conditional step
+        # Se pueden usar condiciones para ejecutar pasos, jobs o workflows completos usando if, su valor puede ser success o failure
+        if: ${{ steps.test.outputs.result == 'success' }}
+        run: ls -al
   
