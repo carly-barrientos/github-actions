@@ -118,3 +118,23 @@ jobs:
           name: my-artifact
           path: script.sh
   
+  matrix_example:
+    runs-on: ubuntu-latest
+    # Se pueden usar matrices para ejecutar el mismo job en diferentes entornos, se pueden usar variables de entorno, secretos, etc.
+    strategy:
+      matrix:
+        php-version: [7.4, 8.0, 8.1]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+      
+      - name: Run script
+        run: |
+          echo "PHP version: ${{ matrix.php-version }}"
+          php -v
